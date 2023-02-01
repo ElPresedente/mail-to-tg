@@ -1,6 +1,7 @@
 import { Telegraf } from "telegraf";
-import imaps from 'imap-simple'
-import Connection from 'imap'
+import { Config } from 'imap'
+
+import MailReader from '../imap/MailReader'
 
 const { fork, reply } = Telegraf;
 
@@ -13,14 +14,19 @@ if(MAIL_LOGIN === undefined || MAIL_PASSWORD === undefined){
     console.error("в файле .env отсутствуют необходимые данные")
 }
 
-const config: Connection.Config = {
+const config: Config = {
     user: MAIL_LOGIN as string,
     password: MAIL_PASSWORD as string,
     tls: true,
     host: "imap.gmail.com",
     port: 993,
+    keepalive: true
 }
 
-const getLastMails = fork(ctx => {
-
+export default fork(ctx => {
+    const obj: MailReader = new MailReader(config)
+    obj.connect().then(() => {
+        obj.test()
+    })
+    
 })
