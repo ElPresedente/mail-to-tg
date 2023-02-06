@@ -1,4 +1,4 @@
-import telegraf, { Context, Telegraf } from 'telegraf';
+import { Context, Telegraf } from 'telegraf';
 import dotenv from 'dotenv'
 import { Update } from 'telegraf/typings/core/types/typegram';
 import getLastMails from './commands/get-last-mail'

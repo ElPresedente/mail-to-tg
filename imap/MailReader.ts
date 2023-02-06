@@ -7,6 +7,43 @@ export function createXOAuthKey(user: string, accessToken: string){
     
 }
 
+export function createConfigObject(email: string) : Config | undefined {
+    const parts = email.split('@')
+    const {
+        MAIL_LOGIN,
+        MAIL_PASSWORD
+    } = process.env
+    switch(parts[1]){
+        case 'gmail.com': {
+            return {
+                user: MAIL_LOGIN as string,
+                password: MAIL_PASSWORD as string,
+                tls: true,
+                tlsOptions: { 
+                    rejectUnauthorized: false 
+                },
+                host: "imap.gmail.com",
+                port: 993,
+                keepalive: true,
+                xoauth2: "" // вот тут и будем ключ запрашивать
+            }
+        }
+        case 'yandex.ru': {
+            return {
+                user: MAIL_LOGIN as string,
+                password: MAIL_PASSWORD as string,
+                tls: true,
+                tlsOptions: { 
+                    rejectUnauthorized: false 
+                },
+                host: "imap.yandex.ru",
+                port: 993,
+                keepalive: true,
+            }
+        }
+    }
+}
+
 export default class MailReader{
     connectOptions: ImapSimpleOptions;
     imap: ImapSimple | undefined;

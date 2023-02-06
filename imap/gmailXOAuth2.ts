@@ -6,7 +6,9 @@ import fs from 'fs'
 import http from 'http'
 import opn from 'open'
 import {URL} from 'url'
-import db from 'sqlite3'
+import db from 'mongoose'
+
+const connection = db.connect('mongodb://localhost:27017')
 
 
 
@@ -16,7 +18,6 @@ interface GoogleToken{
     client_secret: string;
     refresh_token: string;
 }
-
 
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
@@ -36,13 +37,23 @@ function saveCredentials(client: any) {
     fs.writeFileSync(TOKEN_PATH, payload);
 }
 
-function loadSavedCredentialsIfExist() {
+function loadSavedCredentialsIfExist(): GoogleToken {
     try {
         const content = fs.readFileSync(TOKEN_PATH);
         const credentials = JSON.parse(content.toString('utf8'));
         return credentials;
     } catch (err) {
-        return null;
+        const content = fs.readFileSync(CREDENTIALS_PATH)
+        const credentials = JSON.parse(content.toString('utf8'))
+        const key = credentials.installed || credentials.web
+        const payload = {
+            type: 'authorized_user',
+            client_id: key.client_id,
+            client_secret: key.client_secret,
+            refresh_token: ""
+        }
+        fs.writeFileSync(TOKEN_PATH, JSON.stringify(payload));
+        return payload;
     }
 }
 
@@ -51,14 +62,15 @@ function getCallbackUrl(service: string = ''){
     return `http://localhost:${port}${service}`
 }
 
-export default async () => {
-    const credentials = loadSavedCredentialsIfExist().installed
+function googleSignIn(credentials: GoogleToken){
+
     const oauth2Client = new google.auth.OAuth2(
         credentials.client_id,
         credentials.client_secret,
         getCallbackUrl(CALLBACK_URI),
         //TODO: там можно для безопасности еще шутки передавать, пока без них
     )
+    oauth2Client.getAccessToken()
     //получаем ссылку для авторизации
     const authUrl = oauth2Client.generateAuthUrl({
         access_type: 'offline',
@@ -86,5 +98,23 @@ export default async () => {
         opn(authUrl, {wait: false})
             .then(cp => cp.unref())
     })
+}
+
+export default async () => {
+    console.log('started gapi')
+    let credentials = loadSavedCredentialsIfExist()
+    if(credentials.refresh_token == ''){
+        googleSignIn(credentials)
+    }
+    credentials = loadSavedCredentialsIfExist()
+
+    let xoauth2gen = xoauth2.createXOAuth2Generator({
+        accessUrl: 'https://accounts.google.com/o/oauth2/v2/auth',
+        user: process.env.MAIL_LOGIN,
+        //clientId 
+    })
+    xoauth2gen.
+   
     
+    return 
 }
