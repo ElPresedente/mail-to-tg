@@ -1,7 +1,8 @@
 import imaps, { ImapSimpleOptions, ImapSimple, connect } from 'imap-simple'
 import Connection, { Config, FetchOptions } from 'imap'
-import { simpleParser } from 'mailparser';
+import { Source, simpleParser } from 'mailparser';
 import _ from 'lodash'
+import { bold } from 'telegraf/typings/format';
 
 export function createXOAuthKey(user: string, accessToken: string){
     
@@ -69,19 +70,19 @@ export default class MailReader{
             ];
     
             const fetchOptions: FetchOptions = {
-                bodies: ['HEADER', 'TEXT'],
+                bodies: '',
                 markSeen: false
             };
             this.imap?.search(searchCriteria, fetchOptions).then((messages) => {
                 messages.forEach(item => {
-                    console.log('email')
-                    const parts = _.find(item.parts, {'which': ''})
+                    const parts = _.find(item.parts, {'which': 'TEXT'})
                     const id = item.attributes.uid;
                     const idHeader = "Imap-Id: "+id+"\r\n";
-                    simpleParser(idHeader+parts?.body, (err, mail) => {
-                        console.log(mail.subject)
-                        console.log(mail.html)
-                    });
+                    simpleParser(item.parts[0].body, (err, mail) => {
+                        console.log(mail.headers)
+                        console.log(mail.text)
+                    }); 
+                    return
                 });
             })
             .catch(console.error);
