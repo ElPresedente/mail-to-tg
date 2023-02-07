@@ -7,6 +7,10 @@ export default function (bot: Telegraf<ExtendentContext>){
         {
             command: "subscribe",
             description: "Подписаться на рассылку"
+        },
+        {
+            command: "unsubscribe",
+            description: "Отписаться от рассылки"
         }
     ])
 }

@@ -12,6 +12,7 @@ export default async function(dbo: Db) : Promise<User[]>{
             returnArray.push({
                 name: val.name,
                 id: val.id,
+                chat_id: val.chat_id
             })
         })
         resolve(returnArray)

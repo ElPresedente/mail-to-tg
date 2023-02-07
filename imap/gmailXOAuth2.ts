@@ -7,7 +7,7 @@ import http from 'http'
 import opn from 'open'
 import {URL} from 'url'
 
-const connection = db.connect('mongodb://localhost:27017')
+//const connection = db.connect('mongodb://localhost:27017')
 
 
 
