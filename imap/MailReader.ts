@@ -2,7 +2,6 @@ import imaps, { ImapSimpleOptions, ImapSimple, connect } from 'imap-simple'
 import Connection, { Config, FetchOptions } from 'imap'
 import { Source, simpleParser } from 'mailparser';
 import _ from 'lodash'
-import { bold } from 'telegraf/typings/format';
 
 export function createXOAuthKey(user: string, accessToken: string){
     
@@ -48,8 +47,10 @@ export function createConfigObject(email: string) : Config | undefined {
 export default class MailReader{
     connectOptions: ImapSimpleOptions;
     imap: ImapSimple | undefined;
+    onNewMailArrive?: (messages: imaps.Message[]) => void;
 
     constructor(imapConfig: Config) {
+        this.onNewMailArrive = undefined
         this.connectOptions = {
             imap: imapConfig,
             onmail: num => this.newMailEvent(num)
@@ -64,35 +65,42 @@ export default class MailReader{
 
     newMailEvent(num: number){
         console.log(`Пришли новые письма, теперь в ящике ${num} писем`)
-        this.fetchAndSendMails()
+        this.fetchMails().then(messages => {
+            if(this.onNewMailArrive != undefined)
+                this.onNewMailArrive(messages)
+        })
     }
 
-    fetchAndSendMails(){
-        if(this.imap === undefined)
-            return
-        
-        const searchCriteria = [
-            'UNSEEN'
-        ];
+    async fetchMails(): Promise<imaps.Message[]>{
+        return new Promise<imaps.Message[]>(async (resolve) => {
+            if(this.imap === undefined)
+                return []
+            
+            const searchCriteria = [
+                'UNSEEN'
+            ];
 
-        const fetchOptions: FetchOptions = {
-            bodies: '',
-            markSeen: true
-        };
+            const fetchOptions: FetchOptions = {
+                bodies: '',
+                markSeen: true
+            };
 
-        console.log('fetching')
-        this.imap?.search(searchCriteria, fetchOptions).then((messages) => {
-            messages.forEach(item => {
-                const parts = _.find(item.parts, {'which': 'TEXT'})
-                const id = item.attributes.uid;
-                const idHeader = "Imap-Id: "+id+"\r\n";
-                simpleParser(item.parts[0].body, (err, mail) => {
-                    console.log(mail.headers)
-                    console.log(mail.text)
-                }); 
-                return
-            });
+            console.log('fetching')
+            const messages = await this.imap?.search(searchCriteria, fetchOptions)//.then((messages) => {
+            resolve(messages);
         })
-        .catch(console.error);
+        
+            // messages.forEach(item => {
+            //     const parts = _.find(item.parts, {'which': 'TEXT'})
+            //     const id = item.attributes.uid;
+            //     const idHeader = "Imap-Id: "+id+"\r\n";
+            //     simpleParser(item.parts[0].body, (err, mail) => {
+            //         console.log(mail.headers)
+            //         console.log(mail.text)
+            //     }); 
+            //     return
+            // });
+        // })
+        //.catch(console.error);
     }
 }
