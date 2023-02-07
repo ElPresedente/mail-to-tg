@@ -6,7 +6,6 @@ import fs from 'fs'
 import http from 'http'
 import opn from 'open'
 import {URL} from 'url'
-import db from 'mongoose'
 
 const connection = db.connect('mongodb://localhost:27017')
 
