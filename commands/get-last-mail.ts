@@ -21,11 +21,11 @@ export default fork(async ctx => {
         //config.xoauth2 = await gmailXOAuth()
     }
 
-    const obj: MailReader = new MailReader(config)
-    obj.connect().then(() => {
-        obj.test()
-    })
-    .catch(console.error)
+    // const obj: MailReader = new MailReader(config)
+    // obj.connect().then(() => {
+    //     obj.test()
+    // })
+    // .catch(console.error)
     
 
     reply('text')

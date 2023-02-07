@@ -52,40 +52,46 @@ export default class MailReader{
     constructor(imapConfig: Config) {
         this.connectOptions = {
             imap: imapConfig,
-            onmail: num => {console.log("new mail arrived: " + num)}
+            onmail: num => this.newMailEvent(num)
         }
-
+        console.log('constructed')
+        connect(this.connectOptions)
+        .then(imap => {
+            this.imap = imap
+            this.imap.openBox('INBOX')
+        })
     }
 
-    async connect(){
-        this.imap = await connect(this.connectOptions)
+    newMailEvent(num: number){
+        console.log(`Пришли новые письма, теперь в ящике ${num} писем`)
+        this.fetchAndSendMails()
     }
 
-    test(){
+    fetchAndSendMails(){
         if(this.imap === undefined)
             return
-        this.imap.openBox('INBOX').then(() => {
-            const searchCriteria = [
-                'UNSEEN'
-            ];
-    
-            const fetchOptions: FetchOptions = {
-                bodies: '',
-                markSeen: false
-            };
-            this.imap?.search(searchCriteria, fetchOptions).then((messages) => {
-                messages.forEach(item => {
-                    const parts = _.find(item.parts, {'which': 'TEXT'})
-                    const id = item.attributes.uid;
-                    const idHeader = "Imap-Id: "+id+"\r\n";
-                    simpleParser(item.parts[0].body, (err, mail) => {
-                        console.log(mail.headers)
-                        console.log(mail.text)
-                    }); 
-                    return
-                });
-            })
-            .catch(console.error);
+        
+        const searchCriteria = [
+            'UNSEEN'
+        ];
+
+        const fetchOptions: FetchOptions = {
+            bodies: '',
+            markSeen: true
+        };
+
+        console.log('fetching')
+        this.imap?.search(searchCriteria, fetchOptions).then((messages) => {
+            messages.forEach(item => {
+                const parts = _.find(item.parts, {'which': 'TEXT'})
+                const id = item.attributes.uid;
+                const idHeader = "Imap-Id: "+id+"\r\n";
+                simpleParser(item.parts[0].body, (err, mail) => {
+                    console.log(mail.headers)
+                    console.log(mail.text)
+                }); 
+                return
+            });
         })
         .catch(console.error);
     }
