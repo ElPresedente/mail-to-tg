@@ -25,7 +25,7 @@ export function createConfigObject(email: string) : Config | undefined {
                 host: "imap.gmail.com",
                 port: 993,
                 keepalive: true,
-                xoauth2: "" // вот тут и будем ключ запрашивать
+                //xoauth2: "" // вот тут и будем ключ запрашивать
             }
         }
         case 'yandex.ru': {
@@ -64,7 +64,7 @@ export default class MailReader{
     }
 
     newMailEvent(num: number){
-        console.log(`Пришли новые письма, теперь в ящике ${num} писем`)
+        console.log(`Пришли новые письмаd в количестве ${num}`)
         this.fetchMails().then(messages => {
             if(this.onNewMailArrive != undefined)
                 this.onNewMailArrive(messages)
@@ -82,7 +82,7 @@ export default class MailReader{
 
             const fetchOptions: FetchOptions = {
                 bodies: '',
-                markSeen: true
+                markSeen: false
             };
 
             console.log('fetching')

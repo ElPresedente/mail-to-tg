@@ -9,7 +9,6 @@ import MailReader, {createConfigObject} from './imap/MailReader';
 import { ExtendentContext } from './types/ExtendedContext';
 import { Config } from 'imap'
 import {MongoClient} from 'mongodb'
-import Broadcaster from 'telegraf-broadcast'
 
  
 dotenv.config();

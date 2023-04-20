@@ -6,6 +6,10 @@ import { Telegram } from 'telegraf'; //тут не тот тип, я не мог
 import { MongoClient } from 'mongodb'
 import getAllUsers from '../db/getAllUsers';
 import _ from 'lodash'
+import parseMail from './parseMail';
+
+
+import fs from 'fs'
 
 
 export default async function(messages: Message[], telegram_obj: Telegram, db: MongoClient, dbName: string){
@@ -19,8 +23,13 @@ export default async function(messages: Message[], telegram_obj: Telegram, db: M
     messages.forEach(msg => {
         const body = msg.parts[0].body
         simpleParser(body, (err, mail) => {
+            //console.log(mail)
+
+            parseMail(mail)
+            
             ids.forEach(id => {
-                telegram_obj.sendMessage(id, mail.text as string)
+                const text = mail.text ?? "скоро спарсим"
+                telegram_obj.sendMessage(id, text)
             })
         })
     })

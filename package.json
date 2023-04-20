@@ -22,7 +22,6 @@
     "mongodb": "^5.0.0",
     "node-telegram-bot-api": "^0.61.0",
     "telegraf": "^4.11.2",
-    "telegraf-broadcast": "^2.4.5",
     "xoauth2": "^1.2.0"
   },
   "devDependencies": {

@@ -6,9 +6,9 @@ export default function (dbo: Db, user: User | undefined) : Promise<string>{
     return new Promise<string>(async resolve => {
         const document = dbo.collection('users')
         const query = {id: user?.id}
-        console.log(query)
+        //console.log(query)
         const val = await document.findOne(query)
-        console.log(user)
+        //console.log(user)
         if(val == null){
             resolve("Вы не были подписаны на рассылку :()")
         }

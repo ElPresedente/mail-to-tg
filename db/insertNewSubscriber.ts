@@ -8,9 +8,9 @@ export default function(dbo: Db, user: User | undefined, chat_id: number | undef
     return new Promise<string>(async resolve => {
         const document = dbo.collection('users')
         const query = {id: user?.id}
-        console.log(query)
+        //console.log(query)
         const val = await document.findOne(query)
-        console.log(user)
+        //console.log(user)
         if(val == null)
         {
             const data = {

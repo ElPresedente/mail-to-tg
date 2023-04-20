@@ -1,0 +1,186 @@
+{
+    "attachments": [
+      {
+        "type": "attachment",
+        "content": {
+          "type": "Buffer",
+          "data": []
+        },
+        "contentType": "text/plain",
+        "partId": "2",
+        "release": null,
+        "contentDisposition": "attachment",
+        "filename": "test.txt",
+        "headers": {},
+        "checksum": "9c9691a1f023506d069e05e98f29d8e1",
+        "size": 25
+      }
+    ],
+    "headers": {},
+    "headerLines": [
+      {
+        "key": "received",
+        "line": "Received: from postback20c.mail.yandex.net (postback20c.mail.yandex.net [2a02:6b8:c03:500:1:45:d181:da20])\r\n\tby 5o6bwnkn2gxldp6s.sas.yp-c.yandex.net with LMTP id Do9pCSsQ3n-rOuZV55g\r\n\tfor <el-presedente1@YANDEX.ru>; Wed, 08 Feb 2023 11:07:30 +0300"
+      },
+      {
+        "key": "received",
+        "line": "Received: from iva5-4369dbad31b0.qloud-c.yandex.net (iva5-4369dbad31b0.qloud-c.yandex.net [IPv6:2a02:6b8:c0c:9324:0:640:4369:dbad])\r\n\tby postback20c.mail.yandex.net (Yandex) with ESMTP id 6E77B5E61C\r\n\tfor <el-presedente1@YANDEX.ru>; Wed,  8 Feb 2023 11:07:30 +0300 (MSK)"
+      },
+      {
+        "key": "received",
+        "line": "Received: from f400.i.mail.ru (f400.i.mail.ru [45.84.128.186])\r\n\tby iva5-4369dbad31b0.qloud-c.yandex.net (mxfront/Yandex) with ESMTPS id U7YELOASb0U1-MSs68qKN;\r\n\tWed, 08 Feb 2023 11:07:30 +0300"
+      },
+      {
+        "key": "x-yandex-fwd",
+        "line": "X-Yandex-Fwd: 1"
+      },
+      {
+        "key": "authentication-results",
+        "line": "Authentication-Results: iva5-4369dbad31b0.qloud-c.yandex.net; spf=pass (iva5-4369dbad31b0.qloud-c.yandex.net: domain of mail.ru designates 45.84.128.186 as permitted sender, rule=[ip4:45.84.128.0/23]) smtp.mail=katya.zhuzhlikova.02@mail.ru; dkim=pass header.i=@mail.ru"
+      },
+      {
+        "key": "x-yandex-spam",
+        "line": "X-Yandex-Spam: 1"
+      },
+      {
+        "key": "x-yandex-uid-status",
+        "line": "X-Yandex-Uid-Status: 1 1580726019"
+      },
+      {
+        "key": "dkim-signature",
+        "line": "DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mail.ru; s=mail4;\r\n\th=Content-Type:Message-ID:Reply-To:Date:MIME-Version:Subject:To:From:From:Subject:Content-Type:Content-Transfer-Encoding:To:Cc; bh=AvPTJJRbolQaQ/FxVK/e3q67an8hmV+4qtOGsysDStU=;\r\n\tt=1675843650;x=1675933650; \r\n\tb=sC0ZtMAT5QO/R/nFbamU32Ougn8XfI8F75qsrkg7c8YxfdZ7+V4/FGPtqDyYEeRvnJzWINXOWskXu1H4ukkUiLl/OIAclLTT/MqQQINf/B8KvjB862quB4pdH/xN02X7tZSMLjEuAkkRz6a8TfCtQJRxK2L7bjoBRA2MXMVaNUTpuPQOpoIAtSsHs+qqIjglcD/b0Gl5Nf1xpw/pFUn7T1YzfivjKY1TVGkNE6G1hE1HxEmccHIGotxCrwkupAhVBhP4gjFkzPOk57BN4g7cnpfhovVKIH2MPMi4FBIgyGWDKZ5vogpBWvgRku/RCwj0kacKBtueTcD+YdF6OjQ9EQ==;"
+      },
+      {
+        "key": "received",
+        "line": "Received: by f400.i.mail.ru with local (envelope-from <katya.zhuzhlikova.02@mail.ru>)\r\n\tid 1pPfUF-0003iD-HR\r\n\tfor el-presedente1@yandex.ru; Wed, 08 Feb 2023 11:07:27 +0300"
+      },
+      {
+        "key": "received",
+        "line": "Received: by e.mail.ru with HTTP;\r\n\tWed, 08 Feb 2023 11:07:27 +0300"
+      },
+      {
+        "key": "from",
+        "line": "From: =?UTF-8?B?0JXQutCw0YLQtdGA0LjQvdCwINCW0YPQttC70LjQutC+0LLQsA==?= <katya.zhuzhlikova.02@mail.ru>"
+      },
+      {
+        "key": "to",
+        "line": "To: =?UTF-8?B?ZWwtcHJlc2VkZW50ZTE=?= <el-presedente1@yandex.ru>"
+      },
+      {
+        "key": "subject",
+        "line": "Subject: =?UTF-8?B?dGVzdCB0ZXN0?="
+      },
+      {
+        "key": "mime-version",
+        "line": "MIME-Version: 1.0"
+      },
+      {
+        "key": "x-mailer",
+        "line": "X-Mailer: Mail.Ru Mailer 1.0"
+      },
+      {
+        "key": "x-senderfield-remind",
+        "line": "X-SenderField-Remind: 0"
+      },
+      {
+        "key": "date",
+        "line": "Date: Wed, 08 Feb 2023 11:07:27 +0300"
+      },
+      {
+        "key": "reply-to",
+        "line": "Reply-To: =?UTF-8?B?0JXQutCw0YLQtdGA0LjQvdCwINCW0YPQttC70LjQutC+0LLQsA==?= <katya.zhuzhlikova.02@mail.ru>"
+      },
+      {
+        "key": "x-priority",
+        "line": "X-Priority: 3 (Normal)"
+      },
+      {
+        "key": "message-id",
+        "line": "Message-ID: <1675843647.919180815@f400.i.mail.ru>"
+      },
+      {
+        "key": "content-type",
+        "line": "Content-Type: multipart/mixed;\r\n\tboundary=\"----eBfF116dcC7f1f1DEcDde8848F12884e-5KwfHkitMt3eIqUG-1675843647\""
+      },
+      {
+        "key": "x-7564579a",
+        "line": "X-7564579A: B8F34718100C35BD"
+      },
+      {
+        "key": "x-77f55803",
+        "line": "X-77F55803: 119C1F4DF6A9251C6AB2A528814700E2AE1DB974C491A10D47BA5B6683C5140C8FD872164937FA4C40E712640007C9D0C6EE85FEBF74FF96D8F65EB5C5A7C773151D351EAE1B3081"
+      },
+      {
+        "key": "x-7fa49cb5",
+        "line": "X-7FA49CB5: 70AAF3C13DB7016878DA827A17800CE7124007DE227A7CE1D82A6BABE6F325ACACBFF42033827DA7BCF491FFA38154B613377AFFFEAFD269176DF2183F8FC7C0FDE19FEC90BA7BD7C2099A533E45F2D0395957E7521B51C2CFCAF695D4D8E9FCEA1F7E6F0F101C6778DA827A17800CE7956F10FFCC7409BAEA1F7E6F0F101C6723150C8DA25C47586E58E00D9D99D84E1BDDB23E98D2D38B6F1F7B995052D5CE739E1BB4C201B067B1A6B890B117631420879F7C8C5043D14489FFFB0AA5F4BF176DF2183F8FC7C091DAD9F922AA71188941B15DA834481FA18204E546F3947CB861051D4BA689FCF6B57BC7E64490618DEB871D839B7333395957E7521B51C2DFABB839C843B9C08941B15DA834481F8AA50765F7900637A6F6611B2784C7A4389733CBF5DBD5E9B5C8C57E37DE458B9E9CE733340B9D5F3BBE47FD9DD3FB595F5C1EE8F4F765FC72CEEB2601E22B093A03B725D353964B0B7D0EA88DDEDAC722CA9DD8327EE4930A3850AC1BE2E735B58781B77DE60D36C4224003CC83647689D4C264860C145E"
+      },
+      {
+        "key": "x-c8649e89",
+        "line": "X-C8649E89: 4E36BF7865823D7055A7F0CF078B5EC49A30900B95165D34324A9840C798D5001CAC2C5CBD54EF9BF7DAD86F8DA8628208FCF7CD1F7189CA005CDFDE0A18C5B31D7E09C32AA3244C46EB54DB0BF110836F69C2264AD000B1A95CA90A1D8AC5653EB3F6AD6EA9203E"
+      },
+      {
+        "key": "x-d57d3aed",
+        "line": "X-D57D3AED: 3ZO7eAau8CL7WIMRKs4sN3D3tLDjz0dLbV79QFUyzQ2Ujvy7cMT6pYYqY16iZVKkSc3dCLJ7zSJH7+u4VD18S7Vl4ZUrpaVfd2+vE6kuoey4m4VkSEu530nj6fImhcD4MUrOEAnl0W826KZ9Q+tr5+wYjsrrSY/u8Y3PrTqANeitKFiSd6Yd7yPpbiiZ/d5BsxIjK0jGQgCHUM3Ry2Lt2G3MDkMauH3h0dBdQGj+BB/iPzQYh7XS329fgu+/vnDh6k7dZs4UYPnA0XcOpmz9XQ=="
+      },
+      {
+        "key": "x-mailru-mi",
+        "line": "X-Mailru-MI: 800"
+      },
+      {
+        "key": "x-mailru-sender",
+        "line": "X-Mailru-Sender: DB10D1B41CFAAEEA45B4551324F540E6E04347AAD989F10B60E425D7BADA8F3303349B35BFE273FDEE73A634537DCD706184E1270A1949BC4655B2A59B2202E31170AA15965E4D6153C94748B673B47CE08AD13A84CB394532938D9BA67D6BD892D99EB8CC7091A767EA787935ED9F1B"
+      },
+      {
+        "key": "x-mras",
+        "line": "X-Mras: Ok"
+      },
+      {
+        "key": "x-spam",
+        "line": "X-Spam: undefined"
+      },
+      {
+        "key": "return-path",
+        "line": "Return-Path: katya.zhuzhlikova.02@mail.ru"
+      },
+      {
+        "key": "x-yandex-forward",
+        "line": "X-Yandex-Forward: d632fbc6832f9689778e35115a074bb0"
+      }
+    ],
+    "html": "\n<HTML><BODY><div>testerim testovij test</div><div>&nbsp;</div><div data-signature-widget=\"container\"><div data-signature-widget=\"content\"><div>--</div><div>с уважением,<br>Екатерина Жужликова</div></div></div></BODY></HTML>\n",
+    "text": "\ntesterim testovij test\n \n--\nс уважением,\nЕкатерина Жужликова",
+    "textAsHtml": "<p>testerim testovij test<br/>&nbsp;<br/>--<br/>&scy; &ucy;&vcy;&acy;&zhcy;&iecy;&ncy;&icy;&iecy;&mcy;,<br/>&IEcy;&kcy;&acy;&tcy;&iecy;&rcy;&icy;&ncy;&acy; &ZHcy;&ucy;&zhcy;&lcy;&icy;&kcy;&ocy;&vcy;&acy;</p>",
+    "subject": "test test",
+    "date": "2023-02-08T08:07:27.000Z",
+    "to": {
+      "value": [
+        {
+          "address": "el-presedente1@yandex.ru",
+          "name": "el-presedente1"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">el-presedente1</span> &lt;<a href=\"mailto:el-presedente1@yandex.ru\" class=\"mp_address_email\">el-presedente1@yandex.ru</a>&gt;</span>",
+      "text": "el-presedente1 <el-presedente1@yandex.ru>"
+    },
+    "from": {
+      "value": [
+        {
+          "address": "katya.zhuzhlikova.02@mail.ru",
+          "name": "Екатерина Жужликова"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">&#x415;&#x43A;&#x430;&#x442;&#x435;&#x440;&#x438;&#x43D;&#x430; &#x416;&#x443;&#x436;&#x43B;&#x438;&#x43A;&#x43E;&#x432;&#x430;</span> &lt;<a href=\"mailto:katya.zhuzhlikova.02@mail.ru\" class=\"mp_address_email\">katya.zhuzhlikova.02@mail.ru</a>&gt;</span>",
+      "text": "Екатерина Жужликова <katya.zhuzhlikova.02@mail.ru>"
+    },
+    "messageId": "<1675843647.919180815@f400.i.mail.ru>",
+    "replyTo": {
+      "value": [
+        {
+          "address": "katya.zhuzhlikova.02@mail.ru",
+          "name": "Екатерина Жужликова"
+        }
+      ],
+      "html": "<span class=\"mp_address_group\"><span class=\"mp_address_name\">&#x415;&#x43A;&#x430;&#x442;&#x435;&#x440;&#x438;&#x43D;&#x430; &#x416;&#x443;&#x436;&#x43B;&#x438;&#x43A;&#x43E;&#x432;&#x430;</span> &lt;<a href=\"mailto:katya.zhuzhlikova.02@mail.ru\" class=\"mp_address_email\">katya.zhuzhlikova.02@mail.ru</a>&gt;</span>",
+      "text": "Екатерина Жужликова <katya.zhuzhlikova.02@mail.ru>"
+    }
+  }
